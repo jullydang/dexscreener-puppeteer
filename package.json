@@ -1,12 +1,12 @@
 {
   "name": "dexscreener-puppeteer",
   "version": "1.0.0",
-  "description": "Scrape DexScreener Solana tokens using Puppeteer",
+  "description": "Scrape DexScreener using Puppeteer",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-   "puppeteer": "*"
+    "puppeteer": "^22.8.2"
   }
 }
