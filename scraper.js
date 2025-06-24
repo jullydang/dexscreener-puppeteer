@@ -8,7 +8,7 @@ async function scrapeDexScreener() {
 
   const page = await browser.newPage();
 
-  // 🛡️ Giả lập trình duyệt thật để tránh bị chặn
+  // Giả lập trình duyệt
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
   );
@@ -18,19 +18,18 @@ async function scrapeDexScreener() {
     console.log(`🌐 Navigating to ${url}...`);
     await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
 
-    // ⏳ Đợi một chút cho trang load JS
-    await page.waitForTimeout(8000);
+    // ⏳ Chờ 8s (cách thủ công thay cho page.waitForTimeout)
+    await new Promise(resolve => setTimeout(resolve, 8000));
 
-    // 📸 In ra nội dung trang (giới hạn 2000 ký tự) để kiểm tra có table không
+    // In HTML để kiểm tra
     const html = await page.content();
     console.log('📄 PAGE SNAPSHOT:\n', html.slice(0, 2000));
 
-    // 🕵️‍♂️ Đợi đến khi có ít nhất 1 hàng dữ liệu xuất hiện
+    // Đợi có ít nhất 1 hàng xuất hiện
     await page.waitForFunction(() => {
       return document.querySelectorAll('table tbody tr').length > 0;
     }, { timeout: 90000 });
 
-    // ✅ Lấy dữ liệu từ table
     const data = await page.evaluate(() => {
       const rows = Array.from(document.querySelectorAll('table tbody tr'));
       return rows.map(row => {
@@ -43,7 +42,7 @@ async function scrapeDexScreener() {
       });
     });
 
-    console.log('✅ Scraped Tokens:', data.slice(0, 5)); // in 5 dòng đầu
+    console.log('✅ Scraped Tokens:', data.slice(0, 5));
     await browser.close();
     return data;
 
