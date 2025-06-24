@@ -1,0 +1,13 @@
+{
+  "name": "dexscreener-puppeteer",
+  "version": "1.0.0",
+  "description": "Scrape DexScreener trending Solana tokens using Puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "puppeteer": "^22.4.1"
+  }
+}
