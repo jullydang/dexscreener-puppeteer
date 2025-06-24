@@ -1,12 +1,14 @@
 {
-  "name": "dexscreener-puppeteer",
+  "name": "dexscreener-stealth",
   "version": "1.0.0",
-  "description": "Scrape DexScreener using Puppeteer",
+  "description": "Scrape DexScreener using Puppeteer Stealth",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "puppeteer": "^22.8.2"
+    "puppeteer": "^22.8.2",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-stealth": "^2.11.1"
   }
 }
